@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Яндекс — Всё о компании</title>
+    <meta name="description" content="Всё о Яндексе: история, сервисы, контакты, вакансии. Тёмный стиль с градиентами и фиолетовым.">
+    <style>
+        :root {
+            --bg: #0f0f13;
+            --bg2: #16161f;
+            --card: #1c1c28;
+            --text: #ffffff;
+            --muted: #a0a0b8;
+            --red: #fc3f1d;
+            --purple: #8b5cf6;
+            --purple2: #a78bfa;
+            --grad: linear-gradient(135deg, #fc3f1d 0%, #8b5cf6 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a { color: var(--purple2); text-decoration: none; transition: color 0.15s; }
+        a:hover { color: var(--red); }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(15, 15, 19, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #2a2a3a;
+            z-index: 100;
+            padding: 0 20px;
+        }
+
+        .header-in {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { color: var(--muted); font-size: 14px; font-weight: 500; }
+        nav a:hover { color: var(--text); }
+
+        .nav-btn {
+            background: var(--grad);
+            color: #fff !important;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+        }
+        .nav-btn:hover { opacity: 0.9; color: #fff !important; }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 110px 20px 50px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(252, 63, 29, 0.15) 0%, transparent 50%),
+                        var(--bg);
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 28px;
+            font-size: 16px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label { font-size: 13px; color: var(--muted); }
+
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ql {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid #2a2a3a;
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .ql:hover {
+            border-color: var(--purple);
+            background: #252535;
+            color: var(--text);
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 36px;
+            font-size: 15px;
+        }
+
+        .timeline { display: flex; flex-direction: column; gap: 14px; }
+
+        .t-item {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px 22px;
+            border-left: 4px solid transparent;
+            border-image: var(--grad) 1;
+        }
+
+        .t-year {
+            display: inline-block;
+            background: var(--grad);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .t-item h3 { font-size: 16px; margin-bottom: 5px; }
+        .t-item p { color: var(--muted); font-size: 14px; }
+
+        .cat {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 32px 0 14px;
+            padding-left: 12px;
+            border-left: 3px solid var(--purple);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cat a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--purple2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #2a2a3a;
+            transition: border-color 0.2s, transform 0.2s;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card:hover {
+            border-color: var(--purple);
+            transform: translateY(-3px);
+            color: inherit;
+        }
+
+        .card .icon {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(252,63,29,0.2), rgba(139,92,246,0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card h3 .ext { font-size: 11px; opacity: 0.5; }
+        .card p { color: var(--muted); font-size: 12.5px; }
+
+        .c-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+        }
+
+        .c-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #2a2a3a;
+        }
+
+        .c-card h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .c-card p, .c-card a {
+            color: var(--muted);
+            font-size: 13.5px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .c-card a:hover { color: var(--red); }
+
+        .careers-box {
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(252,63,29,0.1));
+            border: 1px solid #3a2a5a;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .careers-box h3 { font-size: 20px; margin-bottom: 8px; }
+        .careers-box p { color: var(--muted); max-width: 480px; margin: 0 auto 18px; font-size: 14px; }
+
+        .btn {
+            display: inline-block;
+            background: var(--grad);
+            color: #fff !important;
+            padding: 11px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.88; }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--purple);
+            color: var(--purple2) !important;
+            margin-left: 8px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(139,92,246,0.15);
+            color: var(--text) !important;
+        }
+
+        .teams {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 10px;
+        }
+
+        .team {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid #2a2a3a;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .team:hover {
+            border-color: var(--purple);
+            color: inherit;
+        }
+
+        .team h4 { font-size: 13.5px; margin-bottom: 3px; }
+        .team p { font-size: 12px; color: var(--muted); }
+
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid #2a2a3a;
+            padding: 36px 20px 18px;
+            margin-top: 20px;
+        }
+
+        .f-in {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .f-col h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .f-col a {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .f-col a:hover { color: var(--text); }
+
+        .f-bot {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 16px;
+            border-top: 1px solid #2a2a3a;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        #toTop {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--grad);
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+        }
+
+        #toTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #toTop:hover { transform: scale(1.1); }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-bar input {
+            background: var(--card);
+            border: 1px solid #2a2a3a;
+            color: var(--text);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+            max-width: 360px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .filter-bar input:focus { border-color: var(--purple); }
+        .filter-bar input::placeholder { color: var(--muted); }
+
+        @media (max-width: 700px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 56px; left: 0; right: 0;
+                background: var(--bg2);
+                padding: 16px;
+                border-bottom: 1px solid #2a2a3a;
+                gap: 12px;
+            }
+            nav.open { display: flex; }
+            .menu-btn { display: block; }
+            .stats { gap: 20px; }
+            .btn-outline { margin-left: 0; margin-top: 8px; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-in">
+            <a href="#" class="logo">Яндекс</a>
+            <nav id="nav">
+                <a href="#history">История</a>
+                <a href="#services">Сервисы</a>
+                <a href="#contacts">Контакты</a>
+                <a href="#careers">Вакансии</a>
+                <a href="https://ya.ru" class="nav-btn" target="_blank" rel="noopener">Открыть ya.ru</a>
+            </nav>
+            <button class="menu-btn" id="menuBtn" aria-label="Меню">☰</button>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Всё о <span>Яндексе</span></h1>
+        <p>Полная история, все сервисы, контакты и вакансии — на одном сайте</p>
+        <div class="stats">
+            <div><div class="stat-num">1997</div><div class="stat-label">Год запуска</div></div>
+            <div><div class="stat-num">90+</div><div class="stat-label">Сервисов</div></div>
+            <div><div class="stat-num">~30 000</div><div class="stat-label">Сотрудников</div></div>
+            <div><div class="stat-num">67%+</div><div class="stat-label">Доля поиска</div></div>
+        </div>
+        <div class="quick-links">
+            <a class="ql" href="https://ya.ru" target="_blank" rel="noopener">🔍 Поиск</a>
+            <a class="ql" href="https://mail.yandex.ru" target="_blank" rel="noopener">📧 Почта</a>
+            <a class="ql" href="https://maps.yandex.ru" target="_blank" rel="noopener">🗺️ Карты</a>
+            <a class="ql" href="https://go.yandex" target="_blank" rel="noopener">🚕 Go</a>
+            <a class="ql" href="https://market.yandex.ru" target="_blank" rel="noopener">🛒 Маркет</a>
+            <a class="ql" href="https://music.yandex.ru" target="_blank" rel="noopener">🎵 Музыка</a>
+            <a class="ql" href="https://yandex.ru/jobs" target="_blank" rel="noopener">💼 Вакансии</a>
+        </div>
+    </div>
+
+    <section id="history">
+        <h2 class="title">История развития</h2>
+        <p class="subtitle">От поисковой программы до экосистемы из 90+ сервисов · <a href="https://yandex.com/company/history/" target="_blank" rel="noopener">Официальная история →</a></p>
+        <div class="timeline">
+            <div class="t-item">
+                <span class="t-year">1990–1993</span>
+                <h3>Первые шаги</h3>
+                <p>Аркадий Волож и Илья Сегалович разрабатывают поисковые алгоритмы в «Аркадии». Создают поиск по Библии и классификаторам. В 1993 придумывают название «Yandex» — Yet Another iNDEXer (с русской «Я»).</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">23 сентября 1997</span>
+                <h3>Запуск Yandex.ru</h3>
+                <p>Поисковая система официально представлена на SofTool в Москве. Рунет тогда — около 5 000 сайтов. Яндекс уже понимал морфологию русского языка.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2000</span>
+                <h3>Создание компании</h3>
+                <p>Зарегистрировано ООО «Яндекс». Волож — гендиректор. Инвестиции $5,3 млн. Запущены Почта, Новости, Каталог, Товары (будущий Маркет).</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2001</span>
+                <h3>Яндекс.Директ</h3>
+                <p>Первая в Рунете система контекстной рекламы. Компания становится прибыльной и обгоняет Рамблер.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2004–2006</span>
+                <h3>Карты и расширение</h3>
+                <p>Запущены Яндекс.Карты. В 2006 появляется информация о пробках в Москве.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">24 мая 2011</span>
+                <h3>IPO на NASDAQ</h3>
+                <p>Одно из крупнейших IPO со времён Google. Тикер YNDX. Запущен Яндекс.Такси. Открыт портал в Турции.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2017</span>
+                <h3>Алиса и слияние с Uber</h3>
+                <p>Голосовой помощник Алиса. Яндекс.Такси + Uber в России и СНГ. Открыт код CatBoost. Испытания беспилотников.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2018–2019</span>
+                <h3>Умные устройства и Лавка</h3>
+                <p>Яндекс.Станция, Драйв, Еда. В 2019 — Лавка (доставка за 15 мин) и экосистема умного дома.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2021–2023</span>
+                <h3>Финтех, GPT и роботы</h3>
+                <p>Яндекс Пэй, Сплит, банковская лицензия. YandexGPT. Роботы-курьеры и роботакси. Открыты коды YDB, DivKit.</p>
+            </div>
+            <div class="t-item">
+                <span class="t-year">2024–2026</span>
+                <h3>Новая глава</h3>
+                <p>Переход под контроль российских инвесторов. Акции на Мосбирже (YDEX). Развитие ИИ (Alice AI, Шедеврум), робототехники и облака. Гендиректор — Артём Савиновский.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="title">Все сервисы Яндекса</h2>
+        <p class="subtitle">Нажмите на карточку — откроется официальный сервис · <a href="https://yandex.ru/all" target="_blank" rel="noopener">Полный каталог →</a></p>
+
+        <div class="filter-bar">
+            <input type="text" id="serviceSearch" placeholder="🔍 Быстрый поиск сервиса..." autocomplete="off">
+        </div>
+
+        <div class="cat">Популярные <a href="https://yandex.ru/all" target="_blank" rel="noopener">Все →</a></div>
+        <div class="grid" id="servicesGrid">
+            <a class="card" href="https://ya.ru" target="_blank" rel="noopener" data-name="поиск search">
+                <div class="icon">🔍</div>
+                <h3>Поиск <span class="ext">↗</span></h3>
+                <p>Ведущая поисковая система России. Доля рынка 67%+. Ответы от YandexGPT.</p>
+            </a>
+            <a class="card" href="https://alice.yandex.ru" target="_blank" rel="noopener" data-name="алиса alice ai нейросеть">
+                <div class="icon">🤖</div>
+                <h3>Алиса / Alice AI <span class="ext">↗</span></h3>
+                <p>Голосовой помощник и нейросеть. Работа с файлами, генерация контента.</p>
+            </a>
+            <a class="card" href="https://browser.yandex.ru" target="_blank" rel="noopener" data-name="браузер browser">
+                <div class="icon">🌐</div>
+                <h3>Браузер <span class="ext">↗</span></h3>
+                <p>С переводом, пересказом видео, нейросетями и защитой.</p>
+            </a>
+            <a class="card" href="https://maps.yandex.ru" target="_blank" rel="noopener" data-name="карты maps навигатор">
+                <div class="icon">🗺️</div>
+                <h3>Карты и Навигатор <span class="ext">↗</span></h3>
+                <p>Карты, навигация, пробки, транспорт, панорамы.</p>
+            </a>
+            <a class="card" href="https://go.yandex" target="_blank" rel="noopener" data-name="go такси taxi еда">
+                <div class="icon">🚕</div>
+                <h3>Яндекс Go <span class="ext">↗</span></h3>
+                <p>Такси, еда, самокаты, каршеринг и заправки в одном приложении.</p>
+            </a>
+            <a class="card" href="https://market.yandex.ru" target="_blank" rel="noopener" data-name="маркет market магазин">
+                <div class="icon">🛒</div>
+                <h3>Маркет <span class="ext">↗</span></h3>
+                <p>Маркетплейс с миллионами товаров и быстрой доставкой.</p>
+            </a>
+            <a class="card" href="https://eda.yandex" target="_blank" rel="noopener" data-name="еда лавка еда delivery">
+                <div class="icon">🍔</div>
+                <h3>Еда и Лавка <span class="ext">↗</span></h3>
+                <p>Доставка еды из ресторанов и продуктов за 15 минут.</p>
+            </a>
+            <a class="card" href="https://mail.yandex.ru" target="_blank" rel="noopener" data-name="почта mail email">
+                <div class="icon">📧</div>
+                <h3>Почта <span class="ext">↗</span></h3>
+                <p>Бесплатная почта без спама и с мощной защитой.</p>
+            </a>
+            <a class="card" href="https://disk.yandex.ru" target="_blank" rel="noopener" data-name="диск disk облако cloud">
+                <div class="icon">☁️</div>
+                <h3>Диск <span class="ext">↗</span></h3>
+                <p>Облачное хранилище с синхронизацией и совместным доступом.</p>
+            </a>
+            <a class="card" href="https://music.yandex.ru" target="_blank" rel="noopener" data-name="музыка music">
+                <div class="icon">🎵</div>
+                <h3>Музыка <span class="ext">↗</span></h3>
+                <p>Стриминг с персональными рекомендациями.</p>
+            </a>
+            <a class="card" href="https://kinopoisk.ru" target="_blank" rel="noopener" data-name="кинопоиск кино film">
+                <div class="icon">🎬</div>
+                <h3>Кинопоиск <span class="ext">↗</span></h3>
+                <p>Фильмы и сериалы с рейтингами и онлайн-просмотром.</p>
+            </a>
+            <a class="card" href="https://yandex.ru/pogoda" target="_blank" rel="noopener" data-name="погода weather">
+                <div class="icon">🌤</div>
+                <h3>Погода <span class="ext">↗</span></h3>
+                <p>Точный прогноз на технологии Meteum.</p>
+            </a>
+        </div>
+
+        <div class="cat">Для бизнеса</div>
+        <div class="grid">
+            <a class="card" href="https://direct.yandex.ru" target="_blank" rel="noopener" data-name="директ реклама ads">
+                <div class="icon">📢</div>
+                <h3>Директ <span class="ext">↗</span></h3>
+                <p>Контекстная и медийная реклама.</p>
+            </a>
+            <a class="card" href="https://yandex.cloud" target="_blank" rel="noopener" data-name="cloud облако">
+                <div class="icon">☁️</div>
+                <h3>Yandex Cloud <span class="ext">↗</span></h3>
+                <p>Облако: ВМ, базы данных, ИИ, инфраструктура.</p>
+            </a>
+            <a class="card" href="https://metrika.yandex.ru" target="_blank" rel="noopener" data-name="метрика analytics">
+                <div class="icon">📊</div>
+                <h3>Метрика <span class="ext">↗</span></h3>
+                <p>Веб-аналитика и статистика сайтов.</p>
+            </a>
+            <a class="card" href="https://pay.yandex.ru" target="_blank" rel="noopener" data-name="пэй pay сплит">
+                <div class="icon">💳</div>
+                <h3>Яндекс Пэй <span class="ext">↗</span></h3>
+                <p>Платежи и оплата частями (Сплит).</p>
+            </a>
+            <a class="card" href="https://appmetrica.yandex.ru" target="_blank" rel="noopener" data-name="appmetrica">
+                <div class="icon">📈</div>
+                <h3>AppMetrica <span class="ext">↗</span></h3>
+                <p>Аналитика мобильных приложений.</p>
+            </a>
+            <a class="card" href="https://tracker.yandex.ru" target="_blank" rel="noopener" data-name="трекер tracker задачи">
+                <div class="icon">🛠️</div>
+                <h3>Трекер <span class="ext">↗</span></h3>
+                <p>Управление задачами и совместная работа.</p>
+            </a>
+        </div>
+
+        <div class="cat">Другие</div>
+        <div class="grid">
+            <a class="card" href="https://travel.yandex.ru" target="_blank" rel="noopener" data-name="путешествия travel">
+                <div class="icon">✈️</div>
+                <h3>Путешествия <span class="ext">↗</span></h3>
+                <p>Авиабилеты, отели, поезда, автобусы.</p>
+            </a>
+            <a class="card" href="https://realty.yandex.ru" target="_blank" rel="noopener" data-name="недвижимость realty">
+                <div class="icon">🏠</div>
+                <h3>Недвижимость <span class="ext">↗</span></h3>
+                <p>Продажа и аренда жилья.</p>
+            </a>
+            <a class="card" href="https://practicum.yandex.ru" target="_blank" rel="noopener" data-name="практикум обучение">
+                <div class="icon">📚</div>
+                <h3>Практикум <span class="ext">↗</span></h3>
+                <p>Онлайн-обучение IT, дизайну, менеджменту.</p>
+            </a>
+            <a class="card" href="https://shedevrum.ai" target="_blank" rel="noopener" data-name="шедеврум ai арт">
+                <div class="icon">🎨</div>
+                <h3>Шедеврум <span class="ext">↗</span></h3>
+                <p>Генерация картинок и видео нейросетью.</p>
+            </a>
+            <a class="card" href="https://telemost.yandex.ru" target="_blank" rel="noopener" data-name="телемост видео">
+                <div class="icon">💬</div>
+                <h3>Телемост <span class="ext">↗</span></h3>
+                <p>Видеовстречи по ссылке без регистрации.</p>
+            </a>
+            <a class="card" href="https://translate.yandex.ru" target="_blank" rel="noopener" data-name="переводчик translate">
+                <div class="icon">📖</div>
+                <h3>Переводчик <span class="ext">↗</span></h3>
+                <p>Нейронный перевод текстов и страниц.</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2 class="title">Контакты</h2>
+        <p class="subtitle">Адреса, телефоны и почта · <a href="https://yandex.com/company/contacts/moscow" target="_blank" rel="noopener">Официальные контакты →</a></p>
+        <div class="c-grid">
+            <div class="c-card">
+                <h3>Главный офис</h3>
+                <p>ул. Льва Толстого, 16<br>Москва, 119021</p>
+                <a href="tel:+74957397000">+7 495 739-70-00</a>
+                <p>Факс: +7 495 739-70-70</p>
+                <a href="https://yandex.ru/company" target="_blank" rel="noopener">yandex.ru/company ↗</a>
+            </div>
+            <div class="c-card">
+                <h3>Пресс-служба</h3>
+                <a href="mailto:pr@yandex-team.com">pr@yandex-team.com</a>
+                <p style="margin-top:8px">Поддержка:</p>
+                <a href="https://yandex.ru/support" target="_blank" rel="noopener">yandex.ru/support ↗</a>
+            </div>
+            <div class="c-card">
+                <h3>Инвесторам</h3>
+                <a href="tel:+74959743538">+7 495 974-35-38</a>
+                <a href="mailto:askIR@yandex-team.ru">askIR@yandex-team.ru</a>
+                <a href="https://ir.yandex" target="_blank" rel="noopener">ir.yandex ↗</a>
+            </div>
+            <div class="c-card">
+                <h3>Реклама</h3>
+                <a href="tel:+74957393777">+7 495 739-37-77</a>
+                <a href="tel:88007004745">8 800 700-47-45</a>
+                <a href="https://direct.yandex.ru" target="_blank" rel="noopener">direct.yandex.ru ↗</a>
+            </div>
+            <div class="c-card">
+                <h3>Офисы в Москве</h3>
+                <p>• Красная Роза — Льва Толстого, 16</p>
+                <p>• Аврора — Садовническая, 82</p>
+                <p>• Око — 1-й Красногвардейский, 21</p>
+                <p>• Нева — 1-й Красногвардейский, 22</p>
+            </div>
+            <div class="c-card">
+                <h3>Мир</h3>
+                <p>Люцерн, Тель-Авив, Шанхай, Ньюберипорт, Минск, Алматы и другие города.</p>
+                <a href="https://yandex.com/company/contacts/moscow" target="_blank" rel="noopener">Все офисы ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="careers">
+        <h2 class="title">Работа в Яндексе</h2>
+        <p class="subtitle">~30 000 сотрудников создают продукты для миллионов</p>
+
+        <div class="careers-box">
+            <h3>Присоединяйтесь к команде</h3>
+            <p>Ищем разработчиков, дизайнеров, менеджеров, аналитиков и специалистов других направлений. Более 30 офисов в 11 странах.</p>
+            <a href="https://yandex.ru/jobs" class="btn" target="_blank" rel="noopener">Смотреть вакансии</a>
+            <a href="https://yandex.ru/jobs/services" class="btn btn-outline" target="_blank" rel="noopener">Команды</a>
+        </div>
+
+        <div class="cat">Направления</div>
+        <div class="teams">
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Поиск и ИИ ↗</h4>
+                <p>Поиск, YandexGPT, Alice AI, машинное обучение</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Городские сервисы ↗</h4>
+                <p>Go, Еда, Лавка, Драйв, Навигатор</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>E-commerce ↗</h4>
+                <p>Маркет, логистика, роботы на складах</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Yandex B2B Tech ↗</h4>
+                <p>Облако, реклама, аналитика, корпоративный ИИ</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Персональные сервисы ↗</h4>
+                <p>Музыка, Кинопоиск, Книги, Плюс</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Образование ↗</h4>
+                <p>Практикум, Лицей, образовательные проекты</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Инфраструктура ↗</h4>
+                <p>Дата-центры, суперкомпьютеры, DevOps</p>
+            </a>
+            <a class="team" href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">
+                <h4>Робототехника ↗</h4>
+                <p>Беспилотники, роботы-курьеры, склады</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="f-in">
+            <div class="f-col">
+                <h4>О компании</h4>
+                <a href="#history">История</a>
+                <a href="https://yandex.ru/company" target="_blank" rel="noopener">Официальный сайт</a>
+                <a href="https://ir.yandex" target="_blank" rel="noopener">Инвесторам</a>
+                <a href="https://yandex.com/company/history/" target="_blank" rel="noopener">История (EN)</a>
+            </div>
+            <div class="f-col">
+                <h4>Сервисы</h4>
+                <a href="#services">Все сервисы</a>
+                <a href="https://ya.ru" target="_blank" rel="noopener">ya.ru</a>
+                <a href="https://yandex.ru/all" target="_blank" rel="noopener">Каталог сервисов</a>
+                <a href="https://browser.yandex.ru" target="_blank" rel="noopener">Браузер</a>
+            </div>
+            <div class="f-col">
+                <h4>Работа</h4>
+                <a href="https://yandex.ru/jobs" target="_blank" rel="noopener">Вакансии</a>
+                <a href="https://yandex.ru/jobs/services" target="_blank" rel="noopener">Команды</a>
+                <a href="https://practicum.yandex.ru" target="_blank" rel="noopener">Практикум</a>
+            </div>
+            <div class="f-col">
+                <h4>Контакты</h4>
+                <a href="#contacts">Адреса</a>
+                <a href="mailto:pr@yandex-team.com">Пресс-служба</a>
+                <a href="https://yandex.ru/support" target="_blank" rel="noopener">Поддержка</a>
+                <a href="https://yandex.com/company/contacts/moscow" target="_blank" rel="noopener">Все офисы</a>
+            </div>
+        </div>
+        <div class="f-bot">
+            <p>Информационный сайт о Яндексе. Данные из открытых источников на 2026 год.</p>
+            <p style="margin-top:6px">© 2026 · Все ссылки ведут на официальные ресурсы Яндекса</p>
+        </div>
+    </footer>
+
+    <button id="toTop" aria-label="Наверх">↑</button>
+
+    <script>
+        const btn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        btn.addEventListener('click', () => nav.classList.toggle('open'));
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+        const toTop = document.getElementById('toTop');
+        window.addEventListener('scroll', () => {
+            toTop.classList.toggle('show', window.scrollY > 400);
+        });
+        toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const searchInput = document.getElementById('serviceSearch');
+        const cards = document.querySelectorAll('.card[data-name]');
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name') || '';
+                const text = card.textContent.toLowerCase();
+                card.style.display = (name.includes(q) || text.includes(q)) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
